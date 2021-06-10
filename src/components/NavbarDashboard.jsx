@@ -14,17 +14,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Navbar = () => {
+const NavbarDashboard = () => {
   const classes = useStyles();
   return (
     <AppBar>
       <Toolbar>
         <Link className={classes.logo} to='./'>SMART BUS</Link>
-        <Link className={classes.link} to='/about'>About me</Link>
+        <Link className={classes.link} to='/home'>About me</Link>
         <Link className={classes.link} to='/user/login'>Sign out</Link>
       </Toolbar>
     </AppBar>
   )
 }
 
-export default Navbar
+export default NavbarDashboard

@@ -31,10 +31,15 @@ const validationSchema = yup.object({
 });
 
 const Login = (props) => {
-  const { hasLogin } = props
-  console.log(hasLogin)
+  const { hasLogin, onPageSubmit } = props
   const [msgErr, setMsgErr] = useState('')
   const history = useHistory()
+
+  const handleOnSubmit = (e) => {
+    if (onPageSubmit) {
+      onPageSubmit(e)
+    }
+  }
 
   const classes = useStyles()
   const formik = useFormik({
@@ -50,7 +55,8 @@ const Login = (props) => {
       })
         .then(res => {
           localStorage.setItem('token', res.data.token)
-          history.push('/')
+          handleOnSubmit(true)
+          history.replace('/home')
         })
         .catch(error => {
           setMsgErr('Wrong Credential')
@@ -128,11 +134,13 @@ const Login = (props) => {
 }
 
 Login.propTypes = {
-  hasLogin: PropTypes.bool
+  hasLogin: PropTypes.bool,
+  onPageSubmit: PropTypes.func,
 }
 
 Login.defaultProps = {
-  hasLogin: false
+  hasLogin: false,
+  onPageSubmit: null
 }
 
 export default Login

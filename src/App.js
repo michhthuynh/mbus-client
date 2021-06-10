@@ -1,6 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
 import './App.scss'
 import Login from './pages/Login'
 import { useState } from 'react'
@@ -8,21 +7,18 @@ import { useEffect } from 'react'
 import API from './api'
 import getToken from './utils/getToken'
 import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
+import Register from './pages/Register'
 
-const useStyles = makeStyles((theme) => ({
-  pager: {
-
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  container: {
-    marginTop: theme.spacing(8),
-  }
-}))
 
 const App = () => {
   const [hasLogin, setHasLogin] = useState(true)
+
+  const handleLogin = e => {
+    if (e === true) {
+      window.location.reload()
+    }
+  }
 
   useEffect(() => {
     API.get('/auth/check', getToken)
@@ -42,16 +38,23 @@ const App = () => {
   return (
     <Router>
       {
-        !hasLogin && <Redirect to='/user/login' />
+        !hasLogin && <Redirect to='/home' />
       }
-      <Switch>
-        <Route exact path='/user/login'>
-          <Login hasLogin={hasLogin} />
-        </Route>
-        <Route path='/'>
-          <Dashboard />
-        </Route>
-      </Switch>
+      <Route exact path='/home'>
+        <Home hasLogin={hasLogin} />
+      </Route>
+      <Route exact path='/user/login'>
+        <Login hasLogin={hasLogin} onPageSubmit={handleLogin} />
+      </Route>
+      <Route exact path='/user/register'>
+        <Register />
+      </Route>
+      <Route path='/' exact>
+        <Home hasLogin={hasLogin} />
+      </Route>
+      <Route path='/dashboard' exact>
+        <Dashboard />
+      </Route>
     </Router>
   )
 }
