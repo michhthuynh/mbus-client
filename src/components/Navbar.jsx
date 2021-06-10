@@ -1,16 +1,17 @@
 import React from 'react'
-import { AppBar, Container, IconButton, Toolbar, Typography, Button } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
+import { AppBar, Toolbar } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2)
+  link: {
+    fontWeight: 500,
+    paddingLeft: '20px'
   },
-  title: {
+  logo: {
+    fontWeight: 500,
     flexGrow: 1,
-    textTransform: "uppercase"
-  },
+  }
 }))
 
 const Navbar = () => {
@@ -18,13 +19,9 @@ const Navbar = () => {
   return (
     <AppBar>
       <Toolbar>
-        <IconButton color="inherit" aria-label="menu" className={classes.menuButton}>
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          Smart Car
-          </Typography>
-        <Button color="inherit">Login</Button>
+        <Link className={classes.logo} to='./'>SMART BUS</Link>
+        <Link className={classes.link} to='/about'>About me</Link>
+        <Link className={classes.link} to='/user/login'>Sign out</Link>
       </Toolbar>
     </AppBar>
   )
