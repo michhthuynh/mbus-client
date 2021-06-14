@@ -31,15 +31,9 @@ const validationSchema = yup.object({
 });
 
 const Login = (props) => {
-  const { hasLogin, onPageSubmit } = props
   const [msgErr, setMsgErr] = useState('')
   const history = useHistory()
 
-  const handleOnSubmit = (e) => {
-    if (onPageSubmit) {
-      onPageSubmit(e)
-    }
-  }
 
   const classes = useStyles()
   const formik = useFormik({
@@ -55,8 +49,8 @@ const Login = (props) => {
       })
         .then(res => {
           localStorage.setItem('token', res.data.token)
-          handleOnSubmit(true)
           history.replace('/home')
+          window.location.reload()
         })
         .catch(error => {
           setMsgErr('Wrong Credential')
@@ -64,7 +58,7 @@ const Login = (props) => {
     },
   });
 
-  return (!hasLogin ?
+  return (
     <Box display="flex" justifyContent="center" alignItems="center" height="100vh" width="100">
       <>
         <Box width="340px" display='flex' justifyContent='center' flexDirection='column' alignItems="center">
@@ -129,18 +123,8 @@ const Login = (props) => {
           </Typography>
         </Box>
       </>
-    </Box > : <Redirect to="/" />
-  );
-}
-
-Login.propTypes = {
-  hasLogin: PropTypes.bool,
-  onPageSubmit: PropTypes.func,
-}
-
-Login.defaultProps = {
-  hasLogin: false,
-  onPageSubmit: null
+    </Box >
+  )
 }
 
 export default Login

@@ -14,12 +14,6 @@ import Register from './pages/Register'
 const App = () => {
   const [hasLogin, setHasLogin] = useState(true)
 
-  const handleLogin = e => {
-    if (e === true) {
-      window.location.reload()
-    }
-  }
-
   useEffect(() => {
     API.get('/auth/check', getToken)
       .then(res => {
@@ -37,24 +31,17 @@ const App = () => {
 
   return (
     <Router>
-      {
-        !hasLogin && <Redirect to='/home' />
-      }
       <Route exact path='/home'>
         <Home hasLogin={hasLogin} />
       </Route>
-      <Route exact path='/user/login'>
-        <Login hasLogin={hasLogin} onPageSubmit={handleLogin} />
-      </Route>
+      <Route exact path='/user/login' render={() => hasLogin ? <Redirect to="/" /> : <Login />} />
       <Route exact path='/user/register'>
         <Register />
       </Route>
       <Route path='/' exact>
         <Home hasLogin={hasLogin} />
       </Route>
-      <Route path='/dashboard' exact>
-        <Dashboard />
-      </Route>
+      <Route path='/dashboard' exact render={() => hasLogin ? <Dashboard /> : <Redirect to="/user/login" />} />
     </Router>
   )
 }

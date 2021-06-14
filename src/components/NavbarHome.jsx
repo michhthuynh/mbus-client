@@ -1,6 +1,6 @@
 import React from 'react'
 import { AppBar, Toolbar } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types';
 
@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 const NavbarHome = (props) => {
+  const history = useHistory()
+  const handleOnClick = () => {
+    localStorage.removeItem('token')
+    history.push('/')
+    window.location.reload()
+  }
   const { hasLogin } = props
   const classes = useStyles();
   return (
@@ -27,7 +33,7 @@ const NavbarHome = (props) => {
           hasLogin ?
             <>
               <Link className={classes.link} to='/dashboard'>Dashboard</Link>
-              <Link className={classes.link} to='/user/logout'>Sign out</Link>
+              <Link className={classes.link} to='/' onClick={handleOnClick}>Logout</Link>
             </>
             :
             <>
