@@ -1,7 +1,5 @@
-import { Container } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps'
-import RoomIcon from '@material-ui/icons/Room';
 import PropTypes from 'prop-types';
 
 const ConfigMap = (props) => {

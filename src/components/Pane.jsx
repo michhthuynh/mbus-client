@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
-import { Container, Typography, Box, TextField, Card, CardContent, Grid } from '@material-ui/core'
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { Container, Typography, Card, CardContent, Grid } from '@material-ui/core'
 import RoomIcon from '@material-ui/icons/Room';
 import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
+import PropTypes from 'prop-types';
 
-import Tag from './Tag'
+Pane.propTypes = {
+  number: PropTypes.number,
+  name: PropTypes.string
+}
+
+Pane.defaultProps = {
+  number: 0,
+  name: '',
+}
 
 function Pane(props) {
-  const [number, setNumber] = useState(30)
-  const [currentLocation, setCurrentLocation] = useState('Phường 13, Quận 10, Thành phố Hồ Chí Minh')
-  const derection = {
+  const { number, name } = props
+  const stay = {
     start: 'Bến xe miền tây',
     stop: 'Bến xe An Sương'
   }
   return (
     <Container>
-      <Grid spacing={5}>
+      <Grid>
         <Grid item>
           <Card style={{ marginBottom: '20px', borderLeft: '2px solid blue', marginTop: '15px' }}>
             <CardContent>
               <Typography component='p' variant='h6'>
-                Vi trí kết thúc:
+                Vi trí bắt đầu:
               </Typography>
-              <Typography component='span' variant='body'>
-                <DirectionsBusIcon color={'primary'} /> {derection.start}
+              <Typography component='span' variant='body1'>
+                <DirectionsBusIcon color={'primary'} /> {stay.start}
               </Typography>
             </CardContent>
           </Card>
@@ -34,8 +41,8 @@ function Pane(props) {
               <Typography component='p' variant='h6'>
                 Vi trí kết thúc:
               </Typography>
-              <Typography component='span' variant='body'>
-                <DirectionsBusIcon style={{ color: 'green' }} /> {derection.stop}
+              <Typography component='span' variant='body1'>
+                <DirectionsBusIcon style={{ color: 'green' }} /> {stay.stop}
               </Typography>
             </CardContent>
           </Card>
@@ -46,8 +53,8 @@ function Pane(props) {
               <Typography component='p' variant='h6'>
                 Vi trí hiện tại:
               </Typography>
-              <Typography component='span' variant='body'>
-                <RoomIcon color={'error'} /> {currentLocation}
+              <Typography component='span' variant='body1'>
+                <RoomIcon color={'error'} /> {name}
               </Typography>
             </CardContent>
           </Card>
@@ -58,7 +65,7 @@ function Pane(props) {
               <Typography component='p' variant='h6'>
                 Số người trên xe:
               </Typography>
-              <Typography component='span' variant='body'>
+              <Typography component='span' variant='body1'>
                 {number}
               </Typography>
             </CardContent>
