@@ -5,6 +5,8 @@ import Map from '../components/Map'
 import NavbarDashboard from '../components/NavbarDashboard'
 import API from '../api/index'
 import axios from 'axios'
+import env from "react-dotenv";
+require('dotenv').config()
 
 const Dashboard = () => {
   const [position, setPosition] = useState({
@@ -49,7 +51,7 @@ const Dashboard = () => {
   }, [])
 
   useEffect(() => {
-    const token = 'L-Ci2-3iKf9lbwEb1cayad2-seYUcP0nawA-8gjuhno'
+    const token = env.TOKEN
     const url = `https://discover.search.hereapi.com/v1/discover?at=${position.current.lat},${position.current.lng}&q=street&apiKey=${token}`
     axios.get(url)
       .then(res => {
@@ -59,7 +61,9 @@ const Dashboard = () => {
         } else {
           setNameCurrent(`${address.houseNumber}, ${address.street}, ${address.district}, ${address.city}`)
         }
-      })
+      }).catch(
+        setNameCurrent('Không thể lấy vị trí hiện tại')
+      )
   }, [position])
 
   return (
