@@ -52,7 +52,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const token = env.TOKEN
-    const url = `https://discover.search.hereapi.com/v1/discover?at=${position.current.lat},${position.current.lng}&q=street&apiKey=${token}`
+    const url = `https://discover.search.hereapi.com/v1/discover?at=${position.current.lng},${position.current.lat}&q=street&apiKey=${token}`
     axios.get(url)
       .then(res => {
         const address = res.data.items[0].address
