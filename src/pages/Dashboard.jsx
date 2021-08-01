@@ -6,7 +6,6 @@ import NavbarDashboard from '../components/NavbarDashboard'
 import API from '../api/index'
 import axios from 'axios'
 import env from "react-dotenv";
-require('dotenv').config()
 
 const Dashboard = () => {
   const [position, setPosition] = useState({
@@ -51,7 +50,7 @@ const Dashboard = () => {
   }, [])
 
   useEffect(() => {
-    const token = env.TOKEN
+    const token = env?.TOKEN
     const url = `https://discover.search.hereapi.com/v1/discover?at=${position.current.lat},${position.current.lng}&q=street&apiKey=${token}`
     axios.get(url)
       .then(res => {

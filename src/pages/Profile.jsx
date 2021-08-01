@@ -2,6 +2,7 @@ import { Box, Button, Container, makeStyles, Typography, } from '@material-ui/co
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import '../constant/scss/Profile.scss'
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -26,6 +27,10 @@ const profile = {
 }
 
 const Profile = () => {
+  const history = useHistory()
+  const handleOnClick = () => {
+    history.push('/')
+  }
   const classes = useStyles()
   return (
     <Container>
@@ -33,7 +38,7 @@ const Profile = () => {
         <Box width={250} textAlign='center'>
           <img src="https://avatars.githubusercontent.com/u/66417655?v=4" className={classes.avatar} alt="avatar" />
           <Box marginTop="5px">
-            <Typography variant="h5">{localStorage.getItem('username')}</Typography>
+            <Typography variant="h5">{localStorage.getItem('fullName')}</Typography>
           </Box>
           <Box marginTop="5px">
             <Button variant="contained" color="primary" fullWidth>Edit</Button>
@@ -47,11 +52,11 @@ const Profile = () => {
           <ul className="profile__list">
             <li>
               <Typography variant="h6">Full name:</Typography>
-              <Typography component="span">{localStorage.getItem('username')}</Typography>
+              <Typography component="span">{localStorage.getItem('fullName')}</Typography>
             </li>
             <li>
               <Typography variant="h6">Email:</Typography>
-              <Typography component="span">{profile.email}</Typography>
+              <Typography component="span">{localStorage.getItem('email')}</Typography>
             </li>
             <li>
               <Typography variant="h6">Age:</Typography>
@@ -59,13 +64,16 @@ const Profile = () => {
             </li>
             <li>
               <Typography variant="h6">Gender:</Typography>
-              <Typography component="span">{profile.male ? 'Male' : 'Female'}</Typography>
+              <Typography component="span">{localStorage.getItem('male')}</Typography>
             </li>
             <li>
               <Typography variant="h6">Balance:</Typography>
               <Typography component="span">7</Typography>
             </li>
           </ul>
+          <Box paddingLeft="40px">
+            <Button color="primary" variant="contained" onClick={handleOnClick}>Home Page</Button>
+          </Box>
         </Box>
       </div>
     </Container >

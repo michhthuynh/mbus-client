@@ -49,7 +49,9 @@ const Login = (props) => {
       })
         .then(res => {
           localStorage.setItem('token', res.data.token)
-          localStorage.setItem('username', res.data.id)
+          localStorage.setItem('email', res.data.email)
+          localStorage.setItem('fullName', res.data.fullName)
+          localStorage.setItem('male', res.data.male)
           history.replace('/home')
           window.location.reload()
         })

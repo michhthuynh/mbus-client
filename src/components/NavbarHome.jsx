@@ -20,6 +20,9 @@ const NavbarHome = (props) => {
   const history = useHistory()
   const handleOnClick = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('email')
+    localStorage.removeItem('fullName')
+    localStorage.removeItem('male')
     history.push('/')
     window.location.reload()
   }

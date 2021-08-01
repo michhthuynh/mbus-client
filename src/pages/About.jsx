@@ -13,7 +13,7 @@ const About = () => {
           <Typography variant='h4' component='h4' color='primary'>
             ỨNG DỤNG XE BUÝT THÔNG MINH
           </Typography>
-          <Typography variant='p' component='p' style={{ padding: '20px 0' }}>
+          <Typography variant='body1' component='p' style={{ padding: '20px 0' }}>
             Hệ thống sử dụng bản đồ của Google.
             Trên bản đồ có sẵn các chặng đường theo từng tuyến xe và các trạm.
             Dao diện người dùng thể hiện vị trí xe trên bản đồ, số người trên xe, thời gian dự kiến đến trạm đã chọn, số tiền còn trong tài khoản.

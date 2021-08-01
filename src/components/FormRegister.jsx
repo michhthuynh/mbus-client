@@ -40,6 +40,9 @@ const validationSchema = yup.object({
     .string('Enter your password')
     .min(8, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
+  fullName: yup
+    .string('Enter your full name')
+    .required('Password is required'),
   prePassword: yup
     .string('Enter your password')
     .min(8, 'Password should be of minimum 8 characters length')
@@ -52,6 +55,7 @@ function FormRegister(props) {
   const classes = useStyle()
   const formik = useFormik({
     initialValues: {
+      fullName: '',
       email: '',
       password: '',
       prePassword: '',
@@ -79,6 +83,7 @@ function FormRegister(props) {
         isMale = false
       }
       API.post('/auth/register', {
+        fullName: values.fullName,
         username: values.email,
         password: values.password,
         prePassword: values.prePassword,
@@ -87,8 +92,11 @@ function FormRegister(props) {
         number: 0,
         tag_id: "[1,1,1,1,1]"
       }).then(res => {
+        console.log(res.data)
         localStorage.setItem('token', res.data.token)
-        localStorage.setItem('username', res.data.id)
+        localStorage.setItem('email', res.data.email)
+        localStorage.setItem('fullName', res.data.fullName)
+        localStorage.setItem('male', res.data.male)
         history.replace('/home')
         window.location.reload()
       }).catch(err => {
@@ -122,6 +130,17 @@ function FormRegister(props) {
         onChange={formik.handleChange}
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
+      />
+      <TextField
+        className={classes.spacing}
+        fullWidth
+        id="fullName"
+        name="fullName"
+        label="Full Name"
+        value={formik.values.fullName}
+        onChange={formik.handleChange}
+        error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+        helperText={formik.touched.fullName && formik.errors.fullName}
       />
       <TextField
         className={classes.spacing}
