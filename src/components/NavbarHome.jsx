@@ -33,6 +33,7 @@ const NavbarHome = (props) => {
           hasLogin ?
             <>
               <Link className={classes.link} to='/dashboard'>Dashboard</Link>
+              <Link className={classes.link} to='/profile'>Profile</Link>
               <Link className={classes.link} to='/' onClick={handleOnClick}>Logout</Link>
             </>
             :

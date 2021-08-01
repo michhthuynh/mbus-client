@@ -88,6 +88,7 @@ function FormRegister(props) {
         tag_id: "[1,1,1,1,1]"
       }).then(res => {
         localStorage.setItem('token', res.data.token)
+        localStorage.setItem('username', res.data.id)
         history.replace('/home')
         window.location.reload()
       }).catch(err => {

@@ -33,7 +33,7 @@ const Profile = () => {
         <Box width={250} textAlign='center'>
           <img src="https://avatars.githubusercontent.com/u/66417655?v=4" className={classes.avatar} alt="avatar" />
           <Box marginTop="5px">
-            <Typography variant="h5">{profile.username}</Typography>
+            <Typography variant="h5">{localStorage.getItem('username')}</Typography>
           </Box>
           <Box marginTop="5px">
             <Button variant="contained" color="primary" fullWidth>Edit</Button>
@@ -47,7 +47,7 @@ const Profile = () => {
           <ul className="profile__list">
             <li>
               <Typography variant="h6">Full name:</Typography>
-              <Typography component="span">{profile.full_name}</Typography>
+              <Typography component="span">{localStorage.getItem('username')}</Typography>
             </li>
             <li>
               <Typography variant="h6">Email:</Typography>
@@ -63,7 +63,7 @@ const Profile = () => {
             </li>
             <li>
               <Typography variant="h6">Balance:</Typography>
-              <Typography component="span">{profile.balance}</Typography>
+              <Typography component="span">7</Typography>
             </li>
           </ul>
         </Box>

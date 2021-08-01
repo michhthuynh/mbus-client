@@ -49,6 +49,7 @@ const Login = (props) => {
       })
         .then(res => {
           localStorage.setItem('token', res.data.token)
+          localStorage.setItem('username', res.data.id)
           history.replace('/home')
           window.location.reload()
         })
