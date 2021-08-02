@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
+import RegisterTag from './pages/RegisterTag'
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
       </Route>
       <Route exact path='/user/login' render={() => hasLogin ? <Redirect to="/" /> : <Login />} />
       <Route exact path='/profile' render={() => hasLogin ? <Profile /> : <Login />} />
+      <Route exact path='/registerTag' render={() => hasLogin ? <RegisterTag /> : <Login />} />
       <Route exact path='/user/register'>
         <Register />
       </Route>

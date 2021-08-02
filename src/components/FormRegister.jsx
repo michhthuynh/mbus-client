@@ -97,6 +97,8 @@ function FormRegister(props) {
         localStorage.setItem('email', res.data.email)
         localStorage.setItem('fullName', res.data.fullName)
         localStorage.setItem('male', res.data.male)
+        localStorage.setItem('number', res.data.number)
+        localStorage.setItem('age', res.data.age)
         history.replace('/home')
         window.location.reload()
       }).catch(err => {

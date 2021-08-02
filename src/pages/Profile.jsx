@@ -60,7 +60,7 @@ const Profile = () => {
             </li>
             <li>
               <Typography variant="h6">Age:</Typography>
-              <Typography component="span">{profile.age}</Typography>
+              <Typography component="span">{localStorage.getItem('age')}</Typography>
             </li>
             <li>
               <Typography variant="h6">Gender:</Typography>
@@ -68,7 +68,7 @@ const Profile = () => {
             </li>
             <li>
               <Typography variant="h6">Balance:</Typography>
-              <Typography component="span">7</Typography>
+              <Typography component="span">{localStorage.getItem('number')}</Typography>
             </li>
           </ul>
           <Box paddingLeft="40px">

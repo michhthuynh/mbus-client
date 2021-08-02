@@ -1,14 +1,14 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Link, makeStyles, TextField, Typography } from '@material-ui/core'
-import React from 'react'
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+import { Redirect, useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import logo from '../constant/logo.png'
-import { Redirect, useHistory } from 'react-router-dom'
-import { useState } from 'react';
 import { Alert } from '@material-ui/lab';
+import { useState } from 'react';
+import * as yup from 'yup';
 import API from '../api/index'
-import PropTypes from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -18,58 +18,49 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '30px'
   }
 }));
-
 const validationSchema = yup.object({
   email: yup
     .string('Enter your email')
     .email('Enter a valid email')
     .required('Email is required'),
-  password: yup
+  tagID: yup
     .string('Enter your password')
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+    .min(8, 'Tag ID should be of minimum 8 characters length')
+    .required('Tag ID field is required'),
 });
 
-const Login = (props) => {
-  const [msgErr, setMsgErr] = useState('')
+const RegisterTag = props => {
   const history = useHistory()
 
-
   const classes = useStyles()
+  const [msgErr, setMsgErr] = useState('')
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
+      tagID: '',
     },
     validationSchema: validationSchema,
     onSubmit: values => {
-      API.post("/auth/login", {
+      API.post("/tag/register", {
         username: values.email,
-        password: values.password
+        tag_id: values.tagID
       })
         .then(res => {
-          localStorage.setItem('token', res.data.token)
-          localStorage.setItem('email', res.data.email)
-          localStorage.setItem('fullName', res.data.fullName)
-          localStorage.setItem('male', res.data.male)
-          localStorage.setItem('number', res.data.number)
-          localStorage.setItem('age', res.data.age)
           history.replace('/home')
           window.location.reload()
         })
-        .catch(error => {
-          setMsgErr('Wrong Credential')
+        .catch(res => {
+          setMsgErr('Cannot Register Tag')
         })
     },
   });
-
   return (
     <Box display="flex" justifyContent="center" alignItems="center" height="100vh" width="100">
       <>
         <Box width="340px" display='flex' justifyContent='center' flexDirection='column' alignItems="center">
           <img src={logo} alt="logo" width="30%" />
           <Box margin="30px 0" width='100%'>
-            <Typography variant="h6" component="h6" align="center" style={{ fontWeight: '100' }}>Sign in to Smart Map</Typography>
+            <Typography variant="h6" component="h6" align="center" style={{ fontWeight: '100' }}>Register Tag for Smart Map</Typography>
           </Box>
           {
             msgErr &&
@@ -98,14 +89,13 @@ const Login = (props) => {
               <Box>
                 <TextField
                   fullWidth
-                  id="password"
-                  name="password"
-                  label="Password"
-                  type="password"
-                  value={formik.values.password}
+                  id="tagID"
+                  name="tagID"
+                  label="Tag ID"
+                  value={formik.values.tagID}
                   onChange={formik.handleChange}
-                  error={formik.touched.password && Boolean(formik.errors.password)}
-                  helperText={formik.touched.password && formik.errors.password}
+                  error={formik.touched.tagID && Boolean(formik.errors.tagID)}
+                  helperText={formik.touched.tagID && formik.errors.tagID}
                 />
               </Box>
               <Box margin="32px 0">
@@ -116,20 +106,21 @@ const Login = (props) => {
             </form>
           </Box>
           <Typography className={classes.marginTop}>
-            <Link href="#" className={classes.margin}>
-              Sign up
+            <Link href="/" className={classes.margin}>
+              Home page
             </Link>
-            <Link href="#" className={classes.margin}>
+            <Link href="/" className={classes.margin}>
               Contact me
-            </Link>
-            <Link href="../">
-              Home
             </Link>
           </Typography>
         </Box>
       </>
     </Box >
-  )
-}
+  );
+};
 
-export default Login
+RegisterTag.propTypes = {
+
+};
+
+export default RegisterTag;

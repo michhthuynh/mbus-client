@@ -23,6 +23,8 @@ const NavbarHome = (props) => {
     localStorage.removeItem('email')
     localStorage.removeItem('fullName')
     localStorage.removeItem('male')
+    localStorage.removeItem('age')
+    localStorage.removeItem('number')
     history.push('/')
     window.location.reload()
   }

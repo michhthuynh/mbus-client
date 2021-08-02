@@ -1,8 +1,13 @@
 import React from 'react'
 import Navbar from '../components/NavbarDashboard'
+import { useHistory } from 'react-router-dom'
 import { Container, Grid, Typography, Button, Box } from '@material-ui/core'
 
 const About = () => {
+  const history = useHistory()
+  const handleOnClick = () => {
+    history.push('/registerTag')
+  }
   return (
     <Container>
       <Grid container>
@@ -20,7 +25,7 @@ const About = () => {
             Hành khách sử dụng hệ thống cần đăng kí tài khoản, mua thẻ từ và nạp tiền vô thẻ trước để sử dụng.
             Mỗi lần lên và xuống khách hàng cần quẹt thẻ để xác nhận hoàn thành chuyến đi và số tiền trong tài khoản bị trừ sau mỗi lần đi xe.
           </Typography>
-          <Button color="primary" variant="contained">Mua sản phẩm</Button>
+          <Button color="primary" variant="contained" onClick={handleOnClick}>Mua sản phẩm</Button>
         </Grid>
       </Grid>
     </Container>
