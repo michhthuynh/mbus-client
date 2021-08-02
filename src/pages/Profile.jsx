@@ -51,7 +51,7 @@ const Profile = () => {
     <Container>
       <div className={classes.container}>
         <Box width={250} textAlign='center'>
-          <img src={localStorage.getItem('age') === 'Male' ? male : female} className={classes.avatar} alt="avatar" />
+          <img src={localStorage.getItem('male') == 'Male' ? male : female} className={classes.avatar} alt="avatar" />
           <Box marginTop="5px">
             <Typography variant="h5">{localStorage.getItem('fullName')}</Typography>
           </Box>
