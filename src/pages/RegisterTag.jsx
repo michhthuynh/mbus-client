@@ -24,9 +24,13 @@ const validationSchema = yup.object({
     .email('Enter a valid email')
     .required('Email is required'),
   tagID: yup
-    .string('Enter your password')
+    .string('Enter your tagID')
     .min(8, 'Tag ID should be of minimum 8 characters length')
     .required('Tag ID field is required'),
+  series: yup
+    .string('Enter your series')
+    .min(8, 'Series should be of minimum 8 characters length')
+    .required('Series field is required'),
 });
 
 const RegisterTag = props => {
@@ -38,12 +42,14 @@ const RegisterTag = props => {
     initialValues: {
       email: '',
       tagID: '',
+      series: '',
     },
     validationSchema: validationSchema,
     onSubmit: values => {
-      API.post("/tag/register", {
+      API.post("/auth/registerTag", {
         username: values.email,
-        tag_id: values.tagID
+        tag_id: values.tagID,
+        series: values.series
       })
         .then(res => {
           history.replace('/home')
@@ -86,7 +92,7 @@ const RegisterTag = props => {
                   helperText={formik.touched.email && formik.errors.email}
                 />
               </Box>
-              <Box>
+              <Box marginBottom="20px">
                 <TextField
                   fullWidth
                   id="tagID"
@@ -96,6 +102,18 @@ const RegisterTag = props => {
                   onChange={formik.handleChange}
                   error={formik.touched.tagID && Boolean(formik.errors.tagID)}
                   helperText={formik.touched.tagID && formik.errors.tagID}
+                />
+              </Box>
+              <Box marginBottom="20px">
+                <TextField
+                  fullWidth
+                  id="series"
+                  name="series"
+                  label="Series"
+                  value={formik.values.series}
+                  onChange={formik.handleChange}
+                  error={formik.touched.series && Boolean(formik.errors.series)}
+                  helperText={formik.touched.series && formik.errors.series}
                 />
               </Box>
               <Box margin="32px 0">

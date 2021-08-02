@@ -1,8 +1,11 @@
 import { Box, Button, Container, makeStyles, Typography, } from '@material-ui/core'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import '../constant/scss/Profile.scss'
-import React from 'react'
+import { React, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import API from '../api';
+import male from '../male.png'
+import female from '../female.png'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,16 +30,28 @@ const profile = {
 }
 
 const Profile = () => {
+  const [number, setNumber] = useState(null)
   const history = useHistory()
   const handleOnClick = () => {
     history.push('/')
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      API.post('/auth/number', { email: localStorage.getItem('email') })
+        .then(res => {
+          localStorage.setItem('number', res.data.msg)
+          setNumber(res.data.msg)
+        })
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
   const classes = useStyles()
   return (
     <Container>
       <div className={classes.container}>
         <Box width={250} textAlign='center'>
-          <img src="https://avatars.githubusercontent.com/u/66417655?v=4" className={classes.avatar} alt="avatar" />
+          <img src={localStorage.getItem('age') === 'Male' ? male : female} className={classes.avatar} alt="avatar" />
           <Box marginTop="5px">
             <Typography variant="h5">{localStorage.getItem('fullName')}</Typography>
           </Box>
@@ -68,7 +83,7 @@ const Profile = () => {
             </li>
             <li>
               <Typography variant="h6">Balance:</Typography>
-              <Typography component="span">{localStorage.getItem('number')}</Typography>
+              <Typography component="span">{number ? number : localStorage.getItem('number')}</Typography>
             </li>
           </ul>
           <Box paddingLeft="40px">
