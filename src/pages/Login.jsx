@@ -1,4 +1,4 @@
-import { Box, Link, makeStyles, TextField, Typography } from '@material-ui/core'
+import { Box, makeStyles, TextField, Typography } from '@material-ui/core'
 import React from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -53,7 +53,7 @@ const Login = (props) => {
           localStorage.setItem('male', res.data.male)
           localStorage.setItem('number', res.data.number)
           localStorage.setItem('age', res.data.age)
-          history.replace('/')
+          history.replace('/home')
           window.location.reload()
         })
         .catch(error => {
@@ -115,15 +115,12 @@ const Login = (props) => {
             </form>
           </Box>
           <Typography className={classes.marginTop}>
-            <Link href="../user/register" className={classes.margin}>
+            <Button className={classes.margin} onClick={() => { history.push('/user/register') }}>
               Sign up
-            </Link>
-            <Link href="#" className={classes.margin}>
-              Contact me
-            </Link>
-            <Link href="../">
+            </Button>
+            <Button className={classes.margin} onClick={() => { history.push('/') }}>
               Home
-            </Link>
+            </Button>
           </Typography>
         </Box>
       </>

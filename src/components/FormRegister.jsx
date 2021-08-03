@@ -14,6 +14,12 @@ import API from '../api';
 import { useHistory } from 'react-router-dom';
 
 const useStyle = makeStyles((theme) => ({
+  margin: {
+    marginRight: theme.spacing(2)
+  },
+  marginTop: {
+    marginTop: '30px'
+  },
   form: {
     display: 'flex',
     flexDirection: 'column',
@@ -112,101 +118,112 @@ function FormRegister(props) {
     }
   })
   return (
-    <form onSubmit={formik.handleSubmit} className={classes.form}>
-      <img src={logo} alt="logo" width="30%" />
-      <Box margin="30px 0" width='100%'>
-        <Typography variant="h6" component="h6" align="center" style={{ fontWeight: '100' }}>Sign up to Smart Map</Typography>
-      </Box>
-      {
-        msgError &&
-        <Box width="100%" marginBottom="32px">
-          <Alert severity="error"
-            onClose={() => { setMsgError('') }}
-          >
-            {msgError}
-          </Alert>
+    <Box display="flex" flexDirection='column' alignItems='center'>
+      <form onSubmit={formik.handleSubmit} className={classes.form}>
+        <img src={logo} alt="logo" width="30%" />
+        <Box margin="30px 0" width='100%'>
+          <Typography variant="h6" component="h6" align="center" style={{ fontWeight: '100' }}>Sign up to Smart Map</Typography>
         </Box>
-      }
-      <TextField
-        className={classes.spacing}
-        fullWidth
-        id="email"
-        name="email"
-        label="Email"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        error={formik.touched.email && Boolean(formik.errors.email)}
-        helperText={formik.touched.email && formik.errors.email}
-      />
-      <TextField
-        className={classes.spacing}
-        fullWidth
-        id="fullName"
-        name="fullName"
-        label="Full Name"
-        value={formik.values.fullName}
-        onChange={formik.handleChange}
-        error={formik.touched.fullName && Boolean(formik.errors.fullName)}
-        helperText={formik.touched.fullName && formik.errors.fullName}
-      />
-      <TextField
-        id="age"
-        name="age"
-        label="Age"
-        type="number"
-        className={classes.spacing}
-        fullWidth
-        onChange={formik.handleChange}
-        error={formik.touched.age && Boolean(formik.errors.age)}
-        helperText={formik.touched.age && formik.errors.age}
-      />
-      <TextField
-        className={classes.spacing}
-        fullWidth
-        id="password"
-        name="password"
-        label="Password"
-        type="password"
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        error={formik.touched.password && Boolean(formik.errors.password)}
-        helperText={formik.touched.password && formik.errors.password}
-      />
-      <TextField
-        className={classes.spacing}
-        fullWidth
-        id="prePassword"
-        name="prePassword"
-        label="Pre-Password"
-        type="password"
-        value={formik.values.prePassword}
-        onChange={formik.handleChange}
-        error={formik.touched.password && Boolean(formik.errors.password)}
-        helperText={formik.touched.prePassword && formik.errors.prePassword}
-      />
-      <Box width="100%">
-        <FormControl className={classes.spacing} component="fieldset" onChange={formik.handleChange} >
-          <FormLabel component="legend">Gender</FormLabel>
-          <RadioGroup aria-label="gender" name="gender" style={{ display: 'initial' }}>
-            <FormControlLabel name="gender" value="female" control={<Radio />} label="Female" />
-            <FormControlLabel name="gender" value="male" control={<Radio />} label="Male" />
-          </RadioGroup>
-        </FormControl>
-      </Box>
-      <Box width="100%">
-        <FormControlLabel
+        {
+          msgError &&
+          <Box width="100%" marginBottom="32px">
+            <Alert severity="error"
+              onClose={() => { setMsgError('') }}
+            >
+              {msgError}
+            </Alert>
+          </Box>
+        }
+        <TextField
+          className={classes.spacing}
+          fullWidth
+          id="email"
+          name="email"
+          label="Email"
+          value={formik.values.email}
           onChange={formik.handleChange}
-          control={<Checkbox name="acceptTerms" />}
-          label="I accept the terms and conditions."
-          help
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
         />
-      </Box>
-      <Box marginTop='15px' width="100%">
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
+        <TextField
+          className={classes.spacing}
+          fullWidth
+          id="fullName"
+          name="fullName"
+          label="Full Name"
+          value={formik.values.fullName}
+          onChange={formik.handleChange}
+          error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+          helperText={formik.touched.fullName && formik.errors.fullName}
+        />
+        <TextField
+          id="age"
+          name="age"
+          label="Age"
+          type="number"
+          className={classes.spacing}
+          fullWidth
+          onChange={formik.handleChange}
+          error={formik.touched.age && Boolean(formik.errors.age)}
+          helperText={formik.touched.age && formik.errors.age}
+        />
+        <TextField
+          className={classes.spacing}
+          fullWidth
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+        <TextField
+          className={classes.spacing}
+          fullWidth
+          id="prePassword"
+          name="prePassword"
+          label="Pre-Password"
+          type="password"
+          value={formik.values.prePassword}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.prePassword && formik.errors.prePassword}
+        />
+        <Box width="100%">
+          <FormControl className={classes.spacing} component="fieldset" onChange={formik.handleChange} >
+            <FormLabel component="legend">Gender</FormLabel>
+            <RadioGroup aria-label="gender" name="gender" style={{ display: 'initial' }}>
+              <FormControlLabel name="gender" value="female" control={<Radio />} label="Female" />
+              <FormControlLabel name="gender" value="male" control={<Radio />} label="Male" />
+            </RadioGroup>
+          </FormControl>
+        </Box>
+        <Box width="100%">
+          <FormControlLabel
+            onChange={formik.handleChange}
+            control={<Checkbox name="acceptTerms" />}
+            label="I accept the terms and conditions."
+            help
+          />
+        </Box>
+        <Box marginTop='15px' width="100%">
+          <Button color="primary" variant="contained" fullWidth type="submit">
+            Submit
+          </Button>
+        </Box>
+      </form>
+      <Typography className={classes.marginTop}>
+        <Button className={classes.margin} onClick={() => { history.push('/user/login') }}>
+          Sign in
         </Button>
-      </Box>
-    </form>
+        <Button className={classes.margin} onClick={() => { history.push('/') }}>
+          Home
+        </Button>
+      </Typography>
+    </Box>
+
   );
 }
 
