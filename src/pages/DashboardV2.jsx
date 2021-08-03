@@ -69,7 +69,7 @@ const DashboardV2 = () => {
               handleCurrent={handleCurrent}
               lat={position.lat}
               lng={position.lng}
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxOe2u517r_btbNZBbkXlURtoCtWff2X8&v=2&sensor=false"
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMd9MblhDAvN7fS3TUayXPGkkFJ6IhznM"
               loadingElement={<div style={{ height: `100%` }} />}
             />
           </Grid>
