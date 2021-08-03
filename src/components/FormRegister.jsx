@@ -104,7 +104,7 @@ function FormRegister(props) {
         localStorage.setItem('male', res.data.male)
         localStorage.setItem('number', res.data.number)
         localStorage.setItem('age', res.data.age)
-        history.replace('/home')
+        history.replace('/')
         window.location.reload()
       }).catch(err => {
         setMsgError('Cannot register system!!!')
