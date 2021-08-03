@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { } from 'react';
 import { Container, Typography, Card, CardContent, Grid } from '@material-ui/core'
 import RoomIcon from '@material-ui/icons/Room';
 import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
@@ -15,7 +15,7 @@ Pane.defaultProps = {
 }
 
 function Pane(props) {
-  const { number, name } = props
+  const { number, name, distanceGo, distanceFrom } = props
   const stay = {
     start: 'Bến xe miền tây',
     stop: 'Bến xe An Sương'
@@ -55,6 +55,30 @@ function Pane(props) {
               </Typography>
               <Typography component='span' variant='body1'>
                 <RoomIcon color={'error'} /> {name}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item>
+          <Card style={{ marginBottom: '20px', borderLeft: '2px solid blue', marginTop: '15px' }}>
+            <CardContent>
+              <Typography component='p' variant='h6'>
+                Quảng đường đã đi:
+              </Typography>
+              <Typography component='span' variant='body1'>
+                {distanceGo}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item>
+          <Card style={{ marginBottom: '20px', borderLeft: '2px solid blue', marginTop: '15px' }}>
+            <CardContent>
+              <Typography component='p' variant='h6'>
+                Quảng đường còn lại:
+              </Typography>
+              <Typography component='span' variant='body1'>
+                {distanceFrom}
               </Typography>
             </CardContent>
           </Card>

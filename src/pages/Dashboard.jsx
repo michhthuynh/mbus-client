@@ -1,4 +1,4 @@
-import { Box, Grid, Container } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 import Pane from '../components/Pane'
 import React, { useEffect, useState } from 'react'
 import Map from '../components/Map'
@@ -75,6 +75,7 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} md={9}>
             <Map position={position} />
+            {/* <Direction /> */}
           </Grid>
         </Grid>
       </Box>

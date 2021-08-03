@@ -19,15 +19,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const profile = {
-  username: "hthuynh",
-  full_name: "Huynh Hoang",
-  email: "hthuynh@gmail.com",
-  phone_number: "0981465863",
-  age: "16",
-  male: true,
-  balance: "173000"
-}
 
 const Profile = () => {
   const [number, setNumber] = useState(null)
@@ -51,7 +42,7 @@ const Profile = () => {
     <Container>
       <div className={classes.container}>
         <Box width={250} textAlign='center'>
-          <img src={localStorage.getItem('male') == 'Male' ? male : female} className={classes.avatar} alt="avatar" />
+          <img src={localStorage.getItem('male') === 'Male' ? male : female} className={classes.avatar} alt="avatar" />
           <Box marginTop="5px">
             <Typography variant="h5">{localStorage.getItem('fullName')}</Typography>
           </Box>

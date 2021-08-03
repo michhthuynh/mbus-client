@@ -4,11 +4,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import logo from '../constant/logo.png'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useState } from 'react';
 import { Alert } from '@material-ui/lab';
 import API from '../api/index'
-import PropTypes from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
   margin: {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar } from '@material-ui/core'
+import { AppBar, Box, Toolbar } from '@material-ui/core'
 import { Link, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -30,7 +30,9 @@ const NavbarDashboard = () => {
   return (
     <AppBar>
       <Toolbar>
-        <Link className={classes.logo} to='./'>SMART BUS</Link>
+        <Box className={classes.logo}>
+          <Link to='./'>SMART BUS</Link>
+        </Box>
         <Link className={classes.link} to='/home'>About me</Link>
         <Link className={classes.link} to='/home' onClick={handleOnClick}>Sign out</Link>
       </Toolbar>

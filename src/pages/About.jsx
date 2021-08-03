@@ -1,7 +1,6 @@
 import React from 'react'
-import Navbar from '../components/NavbarDashboard'
 import { useHistory } from 'react-router-dom'
-import { Container, Grid, Typography, Button, Box } from '@material-ui/core'
+import { Container, Grid, Typography, Button } from '@material-ui/core'
 
 const About = () => {
   const history = useHistory()

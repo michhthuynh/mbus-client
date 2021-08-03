@@ -6,11 +6,11 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import API from './api'
 import getToken from './utils/getToken'
-import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
 import RegisterTag from './pages/RegisterTag'
+import DashboardV2 from './pages/DashboardV2';
 
 
 const App = () => {
@@ -36,6 +36,9 @@ const App = () => {
       <Route exact path='/home'>
         <Home hasLogin={hasLogin} />
       </Route>
+      {/* <Route exact path='/test'>
+        <DashboardV2 />
+      </Route> */}
       <Route exact path='/user/login' render={() => hasLogin ? <Redirect to="/" /> : <Login />} />
       <Route exact path='/profile' render={() => hasLogin ? <Profile /> : <Login />} />
       <Route exact path='/registerTag' render={() => hasLogin ? <RegisterTag /> : <Login />} />
@@ -45,7 +48,7 @@ const App = () => {
       <Route path='/' exact>
         <Home hasLogin={hasLogin} />
       </Route>
-      <Route path='/dashboard' exact render={() => hasLogin ? <Dashboard /> : <Redirect to="/user/login" />} />
+      <Route path='/dashboard' exact render={() => hasLogin ? <DashboardV2 /> : <Redirect to="/user/login" />} />
     </Router>
   )
 }

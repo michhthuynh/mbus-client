@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow } from 'react-google-maps'
+import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps'
 import PropTypes from 'prop-types';
 
 const ConfigMap = (props) => {

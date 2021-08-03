@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, Link, makeStyles, TextField, Typography } from '@material-ui/core'
 import { useFormik } from 'formik';
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import logo from '../constant/logo.png'
 import { Alert } from '@material-ui/lab';
