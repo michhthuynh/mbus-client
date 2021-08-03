@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import logo from '../constant/logo.png'
-import { TextField, Button, Box, makeStyles, Typography } from '@material-ui/core'
+import { TextField, Button, Box, makeStyles, Typography, Field } from '@material-ui/core'
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
@@ -42,7 +42,11 @@ const validationSchema = yup.object({
     .required('Password is required'),
   fullName: yup
     .string('Enter your full name')
-    .required('Password is required'),
+    .required('Full name field is required'),
+  age: yup
+    .number('Enter your age')
+    .min(5, 'Age should be of minimum 5')
+    .max(100, 'Age should be of maximum 100 characters length'),
   prePassword: yup
     .string('Enter your password')
     .min(8, 'Password should be of minimum 8 characters length')
@@ -59,8 +63,8 @@ function FormRegister(props) {
       email: '',
       password: '',
       prePassword: '',
-      age: '',
       number: 0,
+      age: 1,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -82,12 +86,13 @@ function FormRegister(props) {
       } else {
         isMale = false
       }
+
       API.post('/auth/register', {
         fullName: values.fullName,
         username: values.email,
         password: values.password,
         prePassword: values.prePassword,
-        age: 18,
+        age: values.age,
         male: isMale,
         number: 0,
         tag_id: "[1,1,1,1,1]"
@@ -143,6 +148,17 @@ function FormRegister(props) {
         onChange={formik.handleChange}
         error={formik.touched.fullName && Boolean(formik.errors.fullName)}
         helperText={formik.touched.fullName && formik.errors.fullName}
+      />
+      <TextField
+        id="age"
+        name="age"
+        label="Age"
+        type="number"
+        className={classes.spacing}
+        fullWidth
+        onChange={formik.handleChange}
+        error={formik.touched.age && Boolean(formik.errors.age)}
+        helperText={formik.touched.age && formik.errors.age}
       />
       <TextField
         className={classes.spacing}
