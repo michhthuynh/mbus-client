@@ -51,7 +51,7 @@ const RegisterTag = props => {
         series: values.series
       })
         .then(res => {
-          history.replace('/home')
+          history.replace('/')
           window.location.reload()
         })
         .catch(res => {

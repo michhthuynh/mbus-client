@@ -115,7 +115,7 @@ const Login = (props) => {
             </form>
           </Box>
           <Typography className={classes.marginTop}>
-            <Link href="/user/register" className={classes.margin}>
+            <Link href="../user/register" className={classes.margin}>
               Sign up
             </Link>
             <Link href="#" className={classes.margin}>
